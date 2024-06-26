@@ -11,3 +11,15 @@ CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('fitness-tracker-project')
+
+def check_user(username, password):
+    """
+    Checks the users inputted data to see if it is in the google sheet, if it is then the user will be signed in, if it is not then they will be promnpted to signup or try again
+    """
+    users = SHEET.get_all_records()
+    for user in users:
+        if user['Username'] == username and user['Password'] == password:
+        return True
+    return False    
+
+    
