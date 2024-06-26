@@ -42,7 +42,7 @@ def menu():
     """
     Show menu for the user to select what they want to do once logged in
     """
-    print("Menu:\n")
+    print("Menu:")
     print("1. Log a workout")
     print("2. View progress")
     print("3. Logout")
@@ -60,6 +60,14 @@ def main():
 
         username = input("Please enter your username here (press enter to continue): ").strip()
         user_exists, row = check_user(WORKSHEET, username)
+
+        if action == 'login':
+            if user_exists:
+                password = input('Please enter your password (press enter to continue): ').strip()
+                if check_password(WORKSHEET, row, password):
+                    print("Login Successful!")
+                    menu()
+
 
 
 main()
