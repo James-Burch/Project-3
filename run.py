@@ -35,16 +35,18 @@ def register_new_user(worksheet, username, password):
     """ 
     Save new user details to the google sheet so they can login in future
     """
-    print(f"Attempting to register user {username} with password {password}")
-    worksheet.append_row([username, password])
-    print(f"User {username} successfully registered, enjoy!") 
+    try:
+        worksheet.append_row([username, password])
+        print(f"User {username} successfully registered!") 
+    except Exception as e:
+        print(f"Error registering user {username}: {e}") 
 
 def log_workout(worksheet, username, workout_type):
     """
     Log a workout for the specific user that has logged in 
     """
     exercises = []
-    for i in range(1,6): # Loops 5 time as there is 5 exercises, change range to add or decrease exercises
+    for i in range(1, 6): # Loops 5 time as there is 5 exercises, change range to add or decrease exercises
         exercise_name = input(f"Enter Exercise {i} Name for {workout_type.capitalize()} (or press Enter to skip): ").strip()
         if not exercise_name:
             break # Loop stops if an invalid exercise is entered
@@ -52,8 +54,9 @@ def log_workout(worksheet, username, workout_type):
         sets = input(f"Enter number of sets for exercise {i}: ").strip()
         reps = input(f"Enter number of reps for exercise {i}: ").strip()
 
-        excercises.append([exercise_name, weight, sets, reps])
+        exercises.append([exercise_name, weight, sets, reps])
 
+    # Uploads the inputted data to the google sheet row linked to the users account
     try:
         worksheet.append_row([username], + sum(exercises, []))
         print(f"Your workout has been logged successfully {username}!")  
@@ -66,31 +69,49 @@ def menu(username):
     """
     Show menu for the user to select what they want to do once logged in
     """
-    print("Menu:")
-    print("1. Log a workout")
-    print("2. View progress")
-    print("3. Logout")
+    while True:
+        print("Menu:")
+        print("1. Log a workout")
+        print("2. View progress")
+        print("3. Logout")
+        
+        menu_choice = input("Please enter a number to select one of the above: ").strip()
 
-    menu_choice = input("Please enter a number to select one of the above: ").strip()
-
-    if menu_choice == '1':
-        workout_type = chosen_workout_type()
-        if workout_type:
-            log_workout(WORKSHEET, username, workout_type)
-            print("Loading workout options")
-    elif menu_choice == '2':
-        print('Loading progress')
-    elif menu_choice == '3':
-        print("User has now been logged out")
-        main()
-    else:
-        print("Invalid entry. Please enter '1','2','3' to select an option")
+        if menu_choice == '1':
+            workout_type = choose_workout_type()
+            if workout_type:
+                log_workout(WORKSHEET, username, workout_type)
+                print("Loading workout options")
+            elif menu_choice == '2':
+                print('Loading progress')
+            elif menu_choice == '3':
+                print("User has now been logged out")
+                main()
+            else:
+                print("Invalid entry. Please enter '1','2','3' to select an option")
 
 def choose_workout_type():
     """
     Allows the user to select a workout type from 'push', 'pull' or 'legs'.
     It then returns the chosen workout type or None if an incorrect input is selected. 
     """
+    while True:
+        print("Choose your workout type:")
+        print("1. Push")
+        print("2. Pull")
+        print("3. Legs")
+
+        workout_choice = input("Select 1, 2 or 3 to start logging your workout: ").strip()
+
+        if workout_choice == '1':
+            return 'push'
+        elif workout_choice == '2':
+            return 'pull'
+        elif workout_choice == '3':
+            return 'legs'
+        else:
+            print("Invalid choice please choose 1 'push', 2 'pull', 3 'legs'.")                
+
 
 
 def main():
@@ -127,4 +148,5 @@ def main():
                 menu(username)
                 break
 
-main()
+if __name__ == "__main__":
+    main()
