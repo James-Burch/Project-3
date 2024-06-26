@@ -64,13 +64,11 @@ def log_workout(worksheet, username, workout_type):
             # Adds the new data to the row starting from row C to avoid over writing username and password
             updated_row_data = row_data[:2] + [""] * 3 + sum(exercises, [])
 
-    # Uploads the inputted data to the google sheet row linked to the users account
-    row_data = [username] + [""] * 3 + sum(exercises, [])
-    try:
-        worksheet.append_row(row_data)
-        print(f"Your workout has been logged successfully {username}!")  
-    except Exception as e:
-        print(f"Error logging workout for {username}.")  
+            try:
+                worksheet.append_row(row_data)
+                print(f"Your workout has been logged successfully {username}!")  
+            except Exception as e:
+                print(f"Error logging workout for {username}.")  
 
 
 
