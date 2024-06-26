@@ -43,11 +43,23 @@ def log_workout(worksheet, username, workout_type):
     """
     Log a workout for the specific user that has logged in 
     """
+    exercises = []
+    for i in range(1,6): # Loops 5 time as there is 5 exercises, change range to add or decrease exercises
+        exercise_name = input(f"Enter Exercise {i} Name for {workout_type.capitalize()} (or press Enter to skip): ").strip()
+        if not exercise_name:
+            break # Loop stops if an invalid exercise is entered
+        weight = input(f"Enter weight in kg for exercise {i}: ").strip()
+        sets = input(f"Enter number of sets for exercise {i}: ").strip()
+        reps = input(f"Enter number of reps for exercise {i}: ").strip()
+
+        excercises.append([exercise_name, weight, sets, reps])
+
     try:
-        worksheet.append_row([username, workout_type])
-        print(f"{workout_type} training session has been logged for {username}.")
+        worksheet.append_row([username], + sum(exercises, []))
+        print(f"Your workout has been logged successfully {username}!")  
     except Exception as e:
-        print(f"Error logging workout for {username}: {e}")
+        print(f"Error logging workout for {username}.")  
+
 
 
 def menu(username):
@@ -62,7 +74,23 @@ def menu(username):
     menu_choice = input("Please enter a number to select one of the above: ").strip()
 
     if menu_choice == '1':
+        workout_type = chosen_workout_type()
+        if workout_type:
+            log_workout(WORKSHEET, username, workout_type)
+            print("Loading workout options")
+    elif menu_choice == '2':
+        print('Loading progress')
+    elif menu_choice == '3':
+        print("User has now been logged out")
+        main()
+    else:
+        print("Invalid entry. Please enter '1','2','3' to select an option")
 
+def choose_workout_type():
+    """
+    Allows the user to select a workout type from 'push', 'pull' or 'legs'.
+    It then returns the chosen workout type or None if an incorrect input is selected. 
+    """
 
 
 def main():
