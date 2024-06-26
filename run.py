@@ -59,7 +59,10 @@ def log_workout(worksheet, username, workout_type):
         user_exists, row_number = check_user(worksheet, username)
 
         if user_exists:
+            # Gets the current information in the row if the user exists
             row_data = worksheet.row_values(row_number)
+            # Adds the new data to the row starting from row C to avoid over writing username and password
+            updated_row_data = row_data[:2] + [""] * 3 + sum(exercises, [])
 
     # Uploads the inputted data to the google sheet row linked to the users account
     row_data = [username] + [""] * 3 + sum(exercises, [])
