@@ -19,6 +19,7 @@ def check_user(worksheet, username):
     """
     Check if the username entered is in the list of usernames on sheets.
     """
+    print(f"Usernames in the userdata: {usernames}") # Delete once done
     usernames = worksheet.col_values(1)
     if username in usernames:
         return True, usernames.index(username) + 1
@@ -28,6 +29,7 @@ def check_password(worksheet, row, password):
     """
     Check if password is correct
     """
+    print(f"Stored password: {stored_password}") # Delete once done
     stored_password = worksheet.cell(row, 2).value
     return stored_password == password
 
@@ -35,8 +37,10 @@ def register_new_user(worksheet, username, password):
     """ 
     Save new user details to the google sheet so they can login in future
     """
+    print(f"Debug: New user {username} registered with password {password}") # Delete once done
+    print(f"Attempting to register user {username} with password {password}")
     worksheet.append_row([username, password])
-    print(f"User {username} successfully registered!") 
+    print(f"User {username} successfully registered, enjoy!") 
 
 def menu():
     """
@@ -59,14 +63,29 @@ def main():
             continue
 
         username = input("Please enter your username here (press enter to continue): ").strip()
+        print(f"Entered username: {username}") # Delete once done
         user_exists, row = check_user(WORKSHEET, username)
-
+    # If the user selects login run this code
         if action == 'login':
             if user_exists:
                 password = input('Please enter your password (press enter to continue): ').strip()
+                print(f"Debug: Entered password: {password}") # Delete once done
                 if check_password(WORKSHEET, row, password):
                     print("Login Successful!")
                     menu()
+                else:
+                    print("Incorrect password. Please try again.")   
+            else:
+                print("Username does not exist. Please signup or try again.")
+    # Else if the user selects signup run this code            
+        elif action == 'signup':
+            if user_exists:
+                print("Username already exists. Please login")
+        else:
+            password = input("Please enter your password: ").strip()
+            print(f"Debug: Entered password for signup: {password}") # Delete once done
+            register_new_user(WORKSHEET, username, password)
+
 
 
 
