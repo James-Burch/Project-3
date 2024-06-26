@@ -49,3 +49,13 @@ SHEET = GSPREAD_CLIENT.open('fitness-tracker-project')
 #     username = input("Enter your username:\n")
 #     password = input("Enter your password:\n")
 #     print(username)
+
+
+def check_user(SHEET, username):
+    """
+    Check if the username entered is in the list of usernames on sheets.
+    """
+    usernames = SHEET.col_values(1)
+    if username in usernames:
+        return True, usernames.index(username) + 1
+    return False, None    
