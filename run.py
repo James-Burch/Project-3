@@ -60,10 +60,17 @@ def check_user(SHEET, username):
         return True, usernames.index(username) + 1
     return False, None
 
-def check_password(sheet, column, password):
+def check_password(SHEET, column, password):
     """
     Check if password is correct
     """
     stored_password = SHEET.cell(column, 2).value
     return stored_password == password
-    
+
+def register_new_user(SHEET, username, password):
+    """ 
+    Save new user details to the google sheet so they can login in future
+    """
+    SHEET.append_row([username, password])
+    print(f"User {username} successfully registered!") 
+
