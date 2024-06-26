@@ -11,67 +11,31 @@ SCOPE = [
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open('fitness-tracker-project')
-
-# Commented out code as I want a better way to code this
-
-# def check_user(username, password):
-#     """
-#     Checks the users inputted data to see if it is in the google sheet, 
-#     if it is then the user will be signed in, 
-#     if it is not then they will be promnpted to signup or try again
-#     """
-#     users = SHEET.get_all_records()
-#     for user in users:
-#         if user['Username'] == username and user['Password'] == password:
-#             return True
-#     return False    
-
-# def signup(username, password):
-#     """
-#     If the username entered does not match one in the google sheet then the users username will be added and used to signup.
-#     They will be asked to enter a password, this will be added alongside their username
-#     """    
-#     users = SHEET.get_all_records()
-#     for user in users:
-#         if user['Username'] == username:
-#             return False
-#     sheet.append_row([username, password])  
-#     return True
-
-# def login():
-#     """
-#     User will enter username and password here to login
-#     """
-#     while True:
-#         print("Please enter a username and password")
-
-#     username = input("Enter your username:\n")
-#     password = input("Enter your password:\n")
-#     print(username)
+SPREADSHEET = GSPREAD_CLIENT.open('fitness-tracker-project')
+WORKSHEET = SPREADSHEET.worksheet('userdata')
 
 
-def check_user(SHEET, username):
+def check_user(worksheet, username):
     """
     Check if the username entered is in the list of usernames on sheets.
     """
-    usernames = SHEET.col_values(1)
+    usernames = worksheet.col_values(1)
     if username in usernames:
         return True, usernames.index(username) + 1
     return False, None
 
-def check_password(SHEET, column, password):
+def check_password(worksheet, row, password):
     """
     Check if password is correct
     """
-    stored_password = SHEET.cell(column, 2).value
+    stored_password = worksheet.cell(row, 2).value
     return stored_password == password
 
-def register_new_user(SHEET, username, password):
+def register_new_user(worksheet, username, password):
     """ 
     Save new user details to the google sheet so they can login in future
     """
-    SHEET.append_row([username, password])
+    worksheet.append_row([username, password])
     print(f"User {username} successfully registered!") 
 
 def menu():
@@ -95,8 +59,7 @@ def main():
             continue
 
         username = input("Please enter your username here (press enter to continue): ").strip()
-        user_exists, row = check_user(SHEET, username)
-
+        user_exists, row = check_user(WORKSHEET, username)
 
 
 main()
