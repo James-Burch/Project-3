@@ -39,6 +39,15 @@ def register_new_user(worksheet, username, password):
     worksheet.append_row([username, password])
     print(f"User {username} successfully registered, enjoy!") 
 
+def log_workout(worksheet, username, workout_type):
+    """
+    Log a workout for the specific user that has logged in 
+    """
+    try:
+        worksheet.append_row([username, workout_type])
+        print(f"{workout_type} training session has been logged for {username}.")
+    except Exception as e:
+        print(f"Error logging workout for {username}: {e}")
 
 
 def menu(username):
@@ -53,6 +62,7 @@ def menu(username):
     menu_choice = input("Please enter a number to select one of the above: ").strip()
 
     if menu_choice == '1':
+
 
 
 def main():
@@ -73,7 +83,7 @@ def main():
                 password = input('Please enter your password (press enter to continue): ').strip()
                 if check_password(WORKSHEET, row, password):
                     print("Login Successful!")
-                    menu()
+                    menu(username)
                     break
                 else:
                     print("Incorrect password. Please try again.")   
@@ -86,7 +96,7 @@ def main():
             else:
                 password = input("Please enter your password: ").strip()
                 register_new_user(WORKSHEET, username, password)
-                menu()
+                menu(username)
                 break
 
 main()
