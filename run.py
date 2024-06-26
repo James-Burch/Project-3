@@ -89,3 +89,11 @@ def main():
     Main function to run the app.
     """
     while True:
+        action = input("Do you want to login or signup? (type login or signup and press enter): ").strip().lower()
+        if action not in ['login', 'signup']:
+            print("Invalid entry please enter 'login' or 'signup'.")
+            continue
+
+
+
+main()
