@@ -56,6 +56,11 @@ def log_workout(worksheet, username, workout_type):
 
         exercises.append([exercise_name, weight, sets, reps])
 
+        user_exists, row_number = check_user(worksheet, username)
+
+        if user_exists:
+            row_data = worksheet.row_values(row_number)
+
     # Uploads the inputted data to the google sheet row linked to the users account
     row_data = [username] + [""] * 3 + sum(exercises, [])
     try:
