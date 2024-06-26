@@ -74,3 +74,18 @@ def register_new_user(SHEET, username, password):
     SHEET.append_row([username, password])
     print(f"User {username} successfully registered!") 
 
+def menu():
+    """
+    Show menu for the user to select what they want to do once logged in
+    """
+    print("Menu:\n")
+    print("1. Log a workout")
+    print("2. View progress")
+    print("3. Logout")
+
+
+def main():
+    """
+    Main function to run the app.
+    """
+    while True:
