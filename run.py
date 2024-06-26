@@ -58,4 +58,12 @@ def check_user(SHEET, username):
     usernames = SHEET.col_values(1)
     if username in usernames:
         return True, usernames.index(username) + 1
-    return False, None    
+    return False, None
+
+def check_password(sheet, column, password):
+    """
+    Check if password is correct
+    """
+    stored_password = SHEET.cell(column, 2).value
+    return stored_password == password
+    
