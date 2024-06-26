@@ -94,6 +94,9 @@ def main():
             print("Invalid entry please enter 'login' or 'signup'.")
             continue
 
+        username = input("Please enter your username here (press enter to continue): ").strip()
+        user_exists, row = check_user(SHEET, username)
+
 
 
 main()
