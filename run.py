@@ -14,7 +14,9 @@ SHEET = GSPREAD_CLIENT.open('fitness-tracker-project')
 
 def check_user(username, password):
     """
-    Checks the users inputted data to see if it is in the google sheet, if it is then the user will be signed in, if it is not then they will be promnpted to signup or try again
+    Checks the users inputted data to see if it is in the google sheet, 
+    if it is then the user will be signed in, 
+    if it is not then they will be promnpted to signup or try again
     """
     users = SHEET.get_all_records()
     for user in users:
@@ -22,4 +24,14 @@ def check_user(username, password):
         return True
     return False    
 
-    
+def signup(username, password):
+    """
+    If the username entered does not match one in the google sheet then the users username will be added and used to signup.
+    They will be asked to enter a password, this will be added alongside their username
+    """    
+    users = SHEET.get_all_records()
+    for user in users:
+        if user['Username'] == username:
+            return False
+    sheet.append_row([username, password])  
+    return True
