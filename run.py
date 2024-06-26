@@ -21,7 +21,7 @@ def check_user(username, password):
     users = SHEET.get_all_records()
     for user in users:
         if user['Username'] == username and user['Password'] == password:
-        return True
+            return True
     return False    
 
 def signup(username, password):
