@@ -57,8 +57,9 @@ def log_workout(worksheet, username, workout_type):
         exercises.append([exercise_name, weight, sets, reps])
 
     # Uploads the inputted data to the google sheet row linked to the users account
+    row_data = [username] + [""] * 3 + sum(exercises, [])
     try:
-        worksheet.append_row([username], + sum(exercises, []))
+        worksheet.append_row(row_data)
         print(f"Your workout has been logged successfully {username}!")  
     except Exception as e:
         print(f"Error logging workout for {username}.")  
