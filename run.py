@@ -134,6 +134,11 @@ def view_progress(worksheet, username):
         if len(row_data) > 2: #Checks if there is logged data for that user
             headers = ["Exercise", "Weight (kg)", "Sets", "Reps"]
             exercises = [row_data[i:i+4] for i in range(2, len(row_data), 4)]
+            print(tabulate(exercises, headers=headers, tablefmt="pretty"))
+        else:
+            print(f"{username} has no workout data to view.")    
+    else:
+        print(f"User {username} not found in database, please log a workout.")        
 
 
 def main():
