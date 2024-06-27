@@ -46,7 +46,7 @@ def log_workout(worksheet, username, workout_type):
     Log a workout for the specific user that has logged in 
     """
     exercises = []
-    for i in range(1, 6): # Loops 5 time as there is 5 exercises, change range to add or decrease exercises
+    for i in range(1, 6): # Loops 5 times as there are 5 exercises, change range to add or decrease exercises
         exercise_name = input(f"Enter Exercise {i} Name for {workout_type.capitalize()} (or press Enter to skip): ").strip()
         if not exercise_name:
             break # Loop stops if an invalid exercise is entered
@@ -56,19 +56,21 @@ def log_workout(worksheet, username, workout_type):
 
         exercises.append([exercise_name, weight, sets, reps])
 
-        user_exists, row_number = check_user(worksheet, username)
+    user_exists, row_number = check_user(worksheet, username)
 
-        if user_exists:
+    if user_exists:
             # Gets the current information in the row if the user exists
-            row_data = worksheet.row_values(row_number)
+        row_data = worksheet.row_values(row_number)
             # Adds the new data to the row starting from row C to avoid over writing username and password
-            updated_row_data = row_data[:2] + [""] * 3 + sum(exercises, [])
+        updated_row_data = row_data[:2] + [""] * 3 + sum(exercises, [])
 
-            try:
-                worksheet.append_row(row_data)
-                print(f"Your workout has been logged successfully {username}!")  
-            except Exception as e:
-                print(f"Error logging workout for {username}.")  
+        try:
+            worksheet.update(f'A{row_number}', [updated_row_data])
+            print(f"Your workout has been logged successfully {username}!")  
+        except Exception as e:
+            print(f"Error logging workout for {username}: {e}")  
+    else:
+        print(f"Username '{username}' not found in the database.")        
 
 
 
@@ -89,13 +91,13 @@ def menu(username):
             if workout_type:
                 log_workout(WORKSHEET, username, workout_type)
                 print("Loading workout options")
-            elif menu_choice == '2':
-                print('Loading progress')
-            elif menu_choice == '3':
-                print("User has now been logged out")
-                main()
-            else:
-                print("Invalid entry. Please enter '1','2','3' to select an option")
+        elif menu_choice == '2':
+            print('Loading progress')
+        elif menu_choice == '3':
+            print("User has now been logged out")
+            main()
+        else:
+            print("Invalid entry. Please enter '1','2','3' to select an option")
 
 def choose_workout_type():
     """
