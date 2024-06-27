@@ -7,7 +7,7 @@ SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
-    ]
+]
 
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
@@ -63,10 +63,10 @@ def log_workout(worksheet, username, workout_type):
             # Gets the current information in the row if the user exists
         row_data = worksheet.row_values(row_number)
             # Adds the new data to the row starting from row C to avoid over writing username and password
-        updated_row_data = row_data[:2] + [""] * 3 + sum(exercises, [])
+        updated_row_data = row_data[:2] + sum(exercises, [])
 
         try:
-            worksheet.update(f'A{row_number}', [updated_row_data])
+            worksheet.update(range_name=f'A{row_number}', values=[updated_row_data])
             print(f"Your workout has been logged successfully {username}!")  
         except Exception as e:
             print(f"Error logging workout for {username}: {e}")  
@@ -93,10 +93,10 @@ def menu(username):
                 log_workout(WORKSHEET, username, workout_type)
                 print("Loading workout options")
         elif menu_choice == '2':
-            print('Loading progress')
+            view_progress(WORKSHEET, username)
         elif menu_choice == '3':
             print("User has now been logged out")
-            main()
+            break
         else:
             print("Invalid entry. Please enter '1','2','3' to select an option")
 
