@@ -34,7 +34,7 @@ def check_password(worksheet, row, password):
 
 def register_new_user(worksheet, username, password):
     """ 
-    Save new user details to the google sheet so they can login in future
+    Register a new user by storing their username and password in google sheets.
     """
     try:
         worksheet.append_row([username, password])
@@ -44,13 +44,13 @@ def register_new_user(worksheet, username, password):
 
 def log_workout(worksheet, username, workout_type):
     """
-    Log a workout for the specific user that has logged in 
+    Log a workout for the specific user that is logged in currently.
     """
     exercises = []
     for i in range(1, 6): # Loops 5 times as there are 5 exercises, change range to add or decrease exercises
         exercise_name = input(f"Enter Exercise {i} Name for {workout_type.capitalize()} (or press Enter to skip): ").strip()
         if not exercise_name:
-            break # Loop stops if an invalid exercise is entered
+            break # Loop stops if there is no excercise name entered
         weight = input(f"Enter weight in kg for exercise {i}: ").strip()
         sets = input(f"Enter number of sets for exercise {i}: ").strip()
         reps = input(f"Enter number of reps for exercise {i}: ").strip()
@@ -60,9 +60,9 @@ def log_workout(worksheet, username, workout_type):
     user_exists, row_number = check_user(worksheet, username)
 
     if user_exists:
-            # Gets the current information in the row if the user exists
+        # Gets the current row data if the user exists
         row_data = worksheet.row_values(row_number)
-            # Adds the new data to the row starting from row C to avoid over writing username and password
+        # Update the row data with new exercises, avoiding overwriting username and password
         updated_row_data = row_data[:2] + sum(exercises, [])
 
         try:
@@ -77,7 +77,7 @@ def log_workout(worksheet, username, workout_type):
 
 def menu(username):
     """
-    Show menu for the user to select what they want to do once logged in
+    Display the menu for the logged-in user.
     """
     while True:
         print("Menu:")
