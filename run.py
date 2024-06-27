@@ -1,6 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
 import getpass
+from tabulate import tabulate
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -121,6 +122,18 @@ def choose_workout_type():
         else:
             print("Invalid choice please choose 1 'push', 2 'pull', 3 'legs'.")                
 
+def view_progress(worksheet, username):
+    """ 
+    Allows the user to pull their previous workout data and compare to their current data in a table
+    """
+    user_exists, row_number = check_user(worksheet, username)
+
+    if user_exists:
+        row_data = worksheet.row_values(row_number)
+
+        if len(row_data) > 2: #Checks if there is logged data for that user
+            headers = ["Exercise", "Weight (kg)", "Sets", "Reps"]
+            exercises = [row_data[i:i+4] for i in range(2, len(row_data), 4)]
 
 
 def main():
