@@ -82,7 +82,7 @@ def menu(username):
     while True:
         print("Menu:")
         print("1. Log a workout")
-        print("2. View progress")
+        print("2. View previous workout")
         print("3. Logout")
         
         menu_choice = input("Please enter a number to select one of the above: ").strip()
