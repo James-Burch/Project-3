@@ -66,3 +66,5 @@ Prior to starting this project I had to decide what to do, I quickly decided tha
 - If the user selects option 2 view a previous workout and the user has previous workout data then the program will retrieve the data by validating the correct username and password matches the one that was used to login and puts this data into a table so that it can be viewed clearly in the console. I have imported tabulate to be able to convert the worksheet data into a table which is printed into the console as the data is not stored in the same format in the worksheet.
 
 - If the user selects option 3 to logout then the user will be logged out and the program will exit and stop running. The user will then be told that they have successfully been logged out. It will also prompt them to remember to come back and log their next workout to try and keep them motivated to keep coming back and working out.
+
+## Testing

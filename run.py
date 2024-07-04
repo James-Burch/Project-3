@@ -22,8 +22,10 @@ def check_user(worksheet, username):
     """
     usernames = worksheet.col_values(1)
     if username in usernames:
+        print(f"User {username} is correct please enter your password next!")
         return True, usernames.index(username) + 1
     return False, None
+
 
 def check_password(worksheet, row, password):
     """
@@ -46,6 +48,7 @@ def log_workout(worksheet, username, workout_type):
     """
     Log a workout for the specific user that is logged in currently.
     """
+    print(f"{username} has begun to log a {workout_type} workout.")
     exercises = []
     for i in range(1, 6): # Loops 5 times as there are 5 exercises, change range to add or decrease exercises
         exercise_name = input(f"Enter Exercise {i} Name for {workout_type.capitalize()} (or press Enter to skip): ").strip()
@@ -145,6 +148,8 @@ def main():
     """
     Main function to run the app.
     """
+    print("Welcome to your fitness tracker app, please login or signup to get started!")
+
     while True:
         action = input("Do you want to login or signup? (type login or signup and press enter): ").strip().lower()
         if action not in ['login', 'signup']:
