@@ -52,5 +52,11 @@ Prior to starting this project I had to decide what to do, I quickly decided tha
 - As a user I want to be able to receive clear instructions if I input invalid data so that I clearly understand what data is required to be input.
 - As a user I want to recieve confirmation of each input, for example when I signup I want to have confirmation that it has been succesfull, or when I login I want to visually see that the login is successful.
 - As a user I want the workouts that I have logged to be clearly displayed when I want to view them.
-## Program Flow
-- When the user first enters into the program they are
+### Program Flow
+- When the user first enters into the program they are presented with a screen that explains a little bit about what the program can be used for and prompts the user to either select to signup or login
+
+- If the user has selected to signup they will be used to enter a username for their account, after a username has been entered then the user will be asked to enter a password which will only work if the password matches the username it is assigned too. Once the user has entered this data it will be stored in the worksheet that is linked to the program using googlesheets API's
+
+- If the user has selected to login as they have already created an account they will need to enter their username, the program will then check that it has that username (case sensitive) stored in the worksheet attached to the program, if the username matches one stored then the user will need to input the valid password attached to that username, if the user does not input a username that matches one stored in the worksheet then the program will tell the user that the username entered does not exist and will redirect them to signup or login again.
+
+- Once the user is logged in the console will tell the user that they have successfully logged in, it will then load a main menu which displays 3 options. The options are to log a workout, view a previous workout or logout. The user must input 1,2 or 3 to select which one they would like to continue with.
