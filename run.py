@@ -2,6 +2,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 import getpass
 from tabulate import tabulate
+import re
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -43,6 +44,16 @@ def register_new_user(worksheet, username, password):
         print(f"User {username} successfully registered!") 
     except Exception as e:
         print(f"Error registering user {username}: {e}") 
+
+def validate_username(username):
+    """
+    Check that the username entered is a valid format, contains only letters and more than 3 characters
+    """
+    if re.match("^[A-Za-z]{4,}$", username):
+        return True
+    else:
+        print("Invalid username entered, it must contain only letters and contain more than 3 characters.")
+        return False    
 
 def log_workout(worksheet, username, workout_type):
     """
@@ -157,6 +168,9 @@ def main():
             continue
 
         username = input("Please enter your username here (press enter to continue): ").strip()
+        if not validate_username(username):
+            continue
+        
         user_exists, row = check_user(WORKSHEET, username)
     # If the user selects login run this code
         if action == 'login':
@@ -175,6 +189,7 @@ def main():
             if user_exists:
                 print("Username already exists. Please login")
             else:
+                print(f"Username {username} is valid and has been created please enter a password so you are able to log back in future.")
                 password = input("Please enter your password: ").strip()
                 register_new_user(WORKSHEET, username, password)
                 menu(username)
