@@ -35,6 +35,8 @@ Happy coding!
 ## Site Introduction
 [Insert Image of console in launched site]
 The Fitness Tracker Project is a Python-based application that allows users to log and track their workouts. Users can create an account, log their workouts (categorized as push, pull, or legs), and view their progress over time. The project utilizes Google Sheets for storing user data and workout logs, ensuring that the information is easily accessible and manageable. My inspiration for creating this program came from my own fitness journey, I personally use a fitness tracker to keep me motivated and able to see my progress.
+
+<a href="https://fitness-tracker-pp3-ac30d4f35dab.herokuapp.com/">Here is the live site!</a>
 ## Project Planning
 Prior to starting this project I had to decide what to do, I quickly decided that I wanted to do my project on something that is a big part of my life and that I have a passion for, I have recently undergone a big change in the fitness in my own life and thought that I could use this to create a program for logging workouts and tracking progress. I started out creating a lucid chart to allow me to visually see what I needed to implement into my code. This was a massive help as it allowed me to work through step by step and follow a plan to ensure that there were no areas missed out.
 ## User Experience (UX)
@@ -83,4 +85,15 @@ Prior to starting this project I had to decide what to do, I quickly decided tha
 ### Identified a bug where everytime a user logged a workout it would create a whole new row for username and that specific workout
 - After identifying this bug I was able to create the function which checks if the user has already got workout data stored or if their username is in the worksheet, if the username is there it will then remove and update the workout data into the row where the username and password is stored. The worksheet will only ever have 1 row for each new user instead of before each workout would create a duplicate user with the same password and username.
 
+### Deployment
+These are the steps I followed to deploy my live program terminal
+- Firstly I had to type 'pip3 freeze > requirements.txt' into the terminal in my code space to add the requirements for Heroku to download to run my program so that it works.
+- Next I went onto the Heroku website, went to my dashboard and selected 'Create New App' from the 'New' dropdown menu in the top right.
+- I then named my app and selected 'create new app' to continue, I then selected the settings tab
+- Once in the settings tab I created my config var for the creds.json file so that the heroku app is able to access my google sheet that is linked to this project, without this my project would not function correctly.
+- I then added 2 build packs, python first and then node.js second to allow the mock terminal to run that is provided by Code Institute for this project.
+- Next I selected the deploy tab, I then linked my github profile and searched for my project repository and linked it ready for deployment.
+- Finally I opted to have automatic deploys so that my live program updates each time I push my code to github. I then clicked deploy branch to get my live site.
+
+Here is the link to my live site: https://fitness-tracker-pp3-ac30d4f35dab.herokuapp.com/
 
