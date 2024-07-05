@@ -85,6 +85,10 @@ Prior to starting this project I had to decide what to do, I quickly decided tha
 ### Identified a bug where everytime a user logged a workout it would create a whole new row for username and that specific workout
 - After identifying this bug I was able to create the function which checks if the user has already got workout data stored or if their username is in the worksheet, if the username is there it will then remove and update the workout data into the row where the username and password is stored. The worksheet will only ever have 1 row for each new user instead of before each workout would create a duplicate user with the same password and username.
 
+### Identified a bug with my validation functions
+- After adding valdation functions to my log_workouts section I wanted to be able to check the user has inputted an exercise name which contains only letters and more than 3 characters, after testing this in the terminal initially I was getting my error message when entering "Chest Press" which I want to be a valid entry, I then realised that the console was only giving a valid entry when I entered in a word with exactly 4 letters example 'push'.
+- To fix this I had to allow the validation to pass as True even if there is a space in the exercise name,
+
 ### Deployment
 These are the steps I followed to deploy my live program terminal
 - Firstly I had to type 'pip3 freeze > requirements.txt' into the terminal in my code space to add the requirements for Heroku to download to run my program so that it works.

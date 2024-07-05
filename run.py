@@ -69,10 +69,7 @@ def validate_exercise_name(name):
     """
     Validate that exercise name entered is all letters and has more than 3 characters
     """
-    if re.match("^[A-Za-z]{4,}$", name):
-        return True
-    else:
-        print("Invalid exercise name, exercise must contain only letters and be 3 or more characters.\n")    
+    return all(re.match("^[A-Za-z]{3,}$", word) for word in name.split())    
 
 
 def log_workout(worksheet, username, workout_type):
@@ -88,6 +85,8 @@ def log_workout(worksheet, username, workout_type):
                 break  # Loop stops if there is no excercise name entered
             if validate_exercise_name(exercise_name):
                 break
+            else:
+                print("Invalid exercise name, exercise must contain only letters and be 3 or more characters.\n")
         if not exercise_name:
             break
 
