@@ -65,11 +65,12 @@ def validate_number(value):
     """
     return value.isdigit()
 
+
 def validate_exercise_name(name):
     """
     Validate that exercise name entered is all letters and has more than 3 characters
     """
-    return all(re.match("^[A-Za-z]{3,}$", word) for word in name.split())    
+    return all(re.match("^[A-Za-z]{3,}$", word) for word in name.split())
 
 
 def log_workout(worksheet, username, workout_type):
@@ -109,16 +110,13 @@ def log_workout(worksheet, username, workout_type):
             if validate_number(reps):
                 break
             else:
-                print("Invalid number of reps. Please enter a number.")        
-            
+                print("Invalid number of reps. Please enter a number.")
             exercises.append([exercise_name, weight, sets, reps])
-            
             user_exists, row_number = check_user(worksheet, username)
-            
             if user_exists:
-        # Gets the current row data if the user exists
+                # Gets the current row data if the user exists
                 row_data = worksheet.row_values(row_number)
-        # Update the row data with new exercises, avoiding overwriting username and password
+                # Update the row data with new exercises, avoiding overwriting username and password
                 updated_row_data = row_data[:2] + sum(exercises, [])
 
             try:
@@ -241,4 +239,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-  
+    

@@ -78,6 +78,9 @@ Prior to starting this project I had to decide what to do, I quickly decided tha
 | If there is a username already in use | I signed up using a username, then tried to signup again using the same username | Console to exit the signup process and print to user that username already exists and prompt to signup again or login | Pass |
 | Error messages work | Enter an invalid number when selecting a workout, enter '4' which is not an option | Error message suggesting the user needs to enter 1,2 or 3 to select a workout type | Pass |
 
+
+### Pep8 CI Python Code Validation
+- I have entered my code into the pep8 CI python code validation to check for any invalid code or indentantion in my code, there were some indentation errors and areas that needed adjusting to be valid. I fixed these errors in the validation checker and copied the new valid code back to my workspace.
 ## Bugs and Fixes
 ### Identified bug where workout data always overrides the previous workout data instead of storing extra
 - I have been unable to fix this bug due to the chosen layout and append statments I have used to create my program, despite this bug the program still works and functions showcasing my Python skills.
@@ -87,7 +90,7 @@ Prior to starting this project I had to decide what to do, I quickly decided tha
 
 ### Identified a bug with my validation functions
 - After adding valdation functions to my log_workouts section I wanted to be able to check the user has inputted an exercise name which contains only letters and more than 3 characters, after testing this in the terminal initially I was getting my error message when entering "Chest Press" which I want to be a valid entry, I then realised that the console was only giving a valid entry when I entered in a word with exactly 4 letters example 'push'.
-- To fix this I had to allow the validation to pass as True even if there is a space in the exercise name,
+- To fix this I had to allow the validation to pass as True even if there is a space in the exercise name. 
 
 ### Deployment
 These are the steps I followed to deploy my live program terminal
@@ -100,4 +103,3 @@ These are the steps I followed to deploy my live program terminal
 - Finally I opted to have automatic deploys so that my live program updates each time I push my code to github. I then clicked deploy branch to get my live site.
 
 Here is the link to my live site: https://fitness-tracker-pp3-ac30d4f35dab.herokuapp.com/
-
