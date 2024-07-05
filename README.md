@@ -1,39 +1,6 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
-
-Welcome,
-
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **May 14, 2024**
-
-## Reminders
-
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
-
-## Creating the Heroku app
-
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
----
-
-Happy coding!
-
 # Fitness Tracker
 ## Site Introduction
-[Insert Image of console in launched site]
+![Image to show the deployed site terminal](readme-images/live-site-terminal.png)
 The Fitness Tracker Project is a Python-based application that allows users to log and track their workouts. Users can create an account, log their workouts (categorized as push, pull, or legs), and view their progress over time. The project utilizes Google Sheets for storing user data and workout logs, ensuring that the information is easily accessible and manageable. My inspiration for creating this program came from my own fitness journey, I personally use a fitness tracker to keep me motivated and able to see my progress.
 
 <a href="https://fitness-tracker-pp3-ac30d4f35dab.herokuapp.com/">Here is the live site!</a>
@@ -56,19 +23,19 @@ Prior to starting this project I had to decide what to do, I quickly decided tha
 - As a user I want the workouts that I have logged to be clearly displayed when I want to view them.
 ### Program Flow
 - When the user first enters into the program they are presented with a screen that explains a little bit about what the program can be used for and prompts the user to either select to signup or login
-
+![Image to show ](readme-images/live-site-terminal.png)
 - If the user has selected to signup they will be used to enter a username for their account, after a username has been entered then the user will be asked to enter a password which will only work if the password matches the username it is assigned too. Once the user has entered this data it will be stored in the worksheet that is linked to the program using googlesheets API's
-
+![Image to show ]()
 - If the user has selected to login as they have already created an account they will need to enter their username, the program will then check that it has that username (case sensitive) stored in the worksheet attached to the program, if the username matches one stored then the user will need to input the valid password attached to that username, if the user does not input a username that matches one stored in the worksheet then the program will tell the user that the username entered does not exist and will redirect them to signup or login again.
-
+![Image to show ]()
 - Once the user is logged in the console will tell the user that they have successfully logged in, it will then load a main menu which displays 3 options. The options are to log a workout, view a previous workout or logout. The user must input 1,2 or 3 to select which one they would like to continue with.
-
+![Image to show ]()
 - If the user selects option 1 to log a workout then they will go through to the next menu where they can then select which workout type they want to log 1 Push, 2 Pull or 3 Legs. Once the user has selected a workout type to log then the program will begin to loop through 5 different exercises to log, each exercise requires the user to input weight, sets and reps. The workout data entered will then be stored in the worksheet in the same row as the users username and password, this is stored in this way so that when the user wants to view their previous workout the program will check what user is logged in and retrieve the workout data that is assigned to those login details.
-
+![Image to show ]()
 - If the user selects option 2 view a previous workout and the user has previous workout data then the program will retrieve the data by validating the correct username and password matches the one that was used to login and puts this data into a table so that it can be viewed clearly in the console. I have imported tabulate to be able to convert the worksheet data into a table which is printed into the console as the data is not stored in the same format in the worksheet.
-
+![Image to show ]()
 - If the user selects option 3 to logout then the user will be logged out and the program will exit and stop running. The user will then be told that they have successfully been logged out. It will also prompt them to remember to come back and log their next workout to try and keep them motivated to keep coming back and working out.
-
+![Image to show ]()
 ## Testing
 | What I am testing? | How I tested it| Expected Outcome | Result |
 | -- | -- | -- | -- |
@@ -81,6 +48,8 @@ Prior to starting this project I had to decide what to do, I quickly decided tha
 
 ### Pep8 CI Python Code Validation
 - I have entered my code into the pep8 CI python code validation to check for any invalid code or indentantion in my code, there were some indentation errors and areas that needed adjusting to be valid. I fixed these errors in the validation checker and copied the new valid code back to my workspace.
+- I am recieving errors for code lines being too long, this is not because of invalid code but due to how the CI template is setup, this just means that those lines will read over 2 rows in the deployed terminal.
+![Image to show ](readme-images/pep8-validation.png)
 ## Bugs and Fixes
 ### Identified bug where workout data always overrides the previous workout data instead of storing extra
 - I have been unable to fix this bug due to the chosen layout and append statments I have used to create my program, despite this bug the program still works and functions showcasing my Python skills.
@@ -90,7 +59,11 @@ Prior to starting this project I had to decide what to do, I quickly decided tha
 
 ### Identified a bug with my validation functions
 - After adding valdation functions to my log_workouts section I wanted to be able to check the user has inputted an exercise name which contains only letters and more than 3 characters, after testing this in the terminal initially I was getting my error message when entering "Chest Press" which I want to be a valid entry, I then realised that the console was only giving a valid entry when I entered in a word with exactly 4 letters example 'push'.
+![Image to show the code that was causing this bug](readme-images/incorrect-validation-code.png)
 - To fix this I had to allow the validation to pass as True even if there is a space in the exercise name. 
+- Here is the code I changed to fix this bug
+![Image to show rectified code](readme-images/correct-validation-code.png)
+
 
 ### Deployment
 These are the steps I followed to deploy my live program terminal

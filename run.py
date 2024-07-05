@@ -203,7 +203,7 @@ def main():
     print("Welcome to your fitness tracker app, please login or signup to get started!\n")
 
     while True:
-        action = input("Do you want to login or signup? (type login or signup and press enter): \n").strip().lower()
+        action = input("Please enter 'login' or 'signup' to begin (press enter): \n").strip().lower()
         if action not in ['login', 'signup']:
             print("Invalid entry please enter 'login' or 'signup'.\n")
             continue
@@ -230,8 +230,8 @@ def main():
             if user_exists:
                 print("Username already exists. Please login")
             else:
-                print(f"Username {username} is valid and has been created please enter a password so you are able to log back in future.\n")
-                password = input("Please enter your password: /n").strip()
+                print(f"Username {username} is valid and has been created, next enter your password below.\n")
+                password = input("Please enter your password:").strip()
                 register_new_user(WORKSHEET, username, password)
                 menu(username)
                 break
