@@ -35,25 +35,29 @@ def check_password(worksheet, row, password):
     stored_password = worksheet.cell(row, 2).value
     return stored_password == password
 
+
 def register_new_user(worksheet, username, password):
-    """ 
-    Register a new user by storing their username and password in google sheets.
+    """
+    Register a new user by storing their username and password in google sheets
     """
     try:
         worksheet.append_row([username, password])
-        print(f"User {username} successfully registered!") 
+        print(f"User {username} successfully registered!")
     except Exception as e:
-        print(f"Error registering user {username}: {e}") 
+        print(f"Error registering user {username}: {e}")
+
 
 def validate_username(username):
     """
-    Check that the username entered is a valid format, contains only letters and more than 3 characters
+    Check that the username entered is a valid format,
+    contains only letters and more than 3 characters
     """
     if re.match("^[A-Za-z]{4,}$", username):
         return True
     else:
         print("Invalid username entered, it must contain only letters and contain more than 3 characters.")
-        return False    
+        return False
+
 
 def log_workout(worksheet, username, workout_type):
     """
@@ -61,10 +65,10 @@ def log_workout(worksheet, username, workout_type):
     """
     print(f"{username} has begun to log a {workout_type} workout.")
     exercises = []
-    for i in range(1, 6): # Loops 5 times as there are 5 exercises, change range to add or decrease exercises
+    for i in range(1, 6):  # Loops 5 times as there are 5 exercises, change range to add or decrease exercises
         exercise_name = input(f"Enter Exercise {i} Name for {workout_type.capitalize()} (or press Enter to skip): ").strip()
         if not exercise_name:
-            break # Loop stops if there is no excercise name entered
+            break  # Loop stops if there is no excercise name entered
         weight = input(f"Enter weight in kg for exercise {i}: ").strip()
         sets = input(f"Enter number of sets for exercise {i}: ").strip()
         reps = input(f"Enter number of reps for exercise {i}: ").strip()
@@ -81,12 +85,11 @@ def log_workout(worksheet, username, workout_type):
 
         try:
             worksheet.update(range_name=f'A{row_number}', values=[updated_row_data])
-            print(f"Your workout has been logged successfully {username}!")  
+            print(f"Your workout has been logged successfully {username}!")
         except Exception as e:
-            print(f"Error logging workout for {username}: {e}")  
+            print(f"Error logging workout for {username}: {e}")
     else:
-        print(f"Username '{username}' not found in the database.")        
-
+        print(f"Username '{username}' not found in the database.")
 
 
 def menu(username):
@@ -98,7 +101,7 @@ def menu(username):
         print("1. Log a workout")
         print("2. View previous workout")
         print("3. Logout")
-        
+
         menu_choice = input("Please enter a number to select one of the above: ").strip()
 
         if menu_choice == '1':
@@ -114,10 +117,11 @@ def menu(username):
         else:
             print("Invalid entry. Please enter '1','2','3' to select an option")
 
+
 def choose_workout_type():
     """
     Allows the user to select a workout type from 'push', 'pull' or 'legs'.
-    It then returns the chosen workout type or None if an incorrect input is selected. 
+    It then returns the chosen workout type or None if an incorrect input is selected.
     """
     while True:
         print("Choose your workout type:")
@@ -134,10 +138,11 @@ def choose_workout_type():
         elif workout_choice == '3':
             return 'legs'
         else:
-            print("Invalid choice please choose 1 'push', 2 'pull', 3 'legs'.")                
+            print("Invalid choice please choose 1 'push', 2 'pull', 3 'legs'.")
+
 
 def view_progress(worksheet, username):
-    """ 
+    """
     Allows the user to pull their previous workout data and compare to their current data in a table
     """
     user_exists, row_number = check_user(worksheet, username)
@@ -145,14 +150,14 @@ def view_progress(worksheet, username):
     if user_exists:
         row_data = worksheet.row_values(row_number)
 
-        if len(row_data) > 2: #Checks if there is logged data for that user
+        if len(row_data) > 2:  # Checks if there is logged data for that user
             headers = ["Exercise", "Weight (kg)", "Sets", "Reps"]
             exercises = [row_data[i:i+4] for i in range(2, len(row_data), 4)]
             print(tabulate(exercises, headers=headers, tablefmt="pretty"))
         else:
-            print(f"{username} has no workout data to view.")    
+            print(f"{username} has no workout data to view.")
     else:
-        print(f"User {username} not found in database, please log a workout.")        
+        print(f"User {username} not found in database, please log a workout.")
 
 
 def main():
@@ -170,7 +175,7 @@ def main():
         username = input("Please enter your username here (press enter to continue): ").strip()
         if not validate_username(username):
             continue
-        
+
         user_exists, row = check_user(WORKSHEET, username)
     # If the user selects login run this code
         if action == 'login':
@@ -181,10 +186,10 @@ def main():
                     menu(username)
                     break
                 else:
-                    print("Incorrect password. Please try again.")   
+                    print("Incorrect password. Please try again.")
             else:
                 print("Username does not exist. Please signup or try again.")
-    # Else if the user selects signup run this code            
+            # Else if the user selects signup run this code
         elif action == 'signup':
             if user_exists:
                 print("Username already exists. Please login")
@@ -195,5 +200,7 @@ def main():
                 menu(username)
                 break
 
+
 if __name__ == "__main__":
     main()
+  
