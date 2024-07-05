@@ -192,6 +192,7 @@ def view_progress(worksheet, username):
             print(tabulate(exercises, headers=headers, tablefmt="pretty"))
         else:
             print(f"{username} has no workout data to view.\n")
+            print("To view previous workouts you must first log a workout\n")
     else:
         print(f"User {username} not found in database, please log a workout.\n")
 

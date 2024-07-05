@@ -23,13 +23,15 @@ Prior to starting this project I had to decide what to do, I quickly decided tha
 - As a user I want the workouts that I have logged to be clearly displayed when I want to view them.
 ### Program Flow
 - When the user first enters into the program they are presented with a screen that explains a little bit about what the program can be used for and prompts the user to either select to signup or login
-![Image to show ](readme-images/live-site-terminal.png)
-- If the user has selected to signup they will be used to enter a username for their account, after a username has been entered then the user will be asked to enter a password which will only work if the password matches the username it is assigned too. Once the user has entered this data it will be stored in the worksheet that is linked to the program using googlesheets API's
-![Image to show ]()
+![Image to show live site terminal](readme-images/live-site-terminal.png)
+- If the user has selected to signup they will be used to enter a username for their account, after a username has been entered then the user will be asked to enter a password. Once the user has entered this data it will be stored in the worksheet that is linked to the program using googlesheets API's.
+![Image to show successful signup](readme-images/signup-successful.png)
 - If the user has selected to login as they have already created an account they will need to enter their username, the program will then check that it has that username (case sensitive) stored in the worksheet attached to the program, if the username matches one stored then the user will need to input the valid password attached to that username, if the user does not input a username that matches one stored in the worksheet then the program will tell the user that the username entered does not exist and will redirect them to signup or login again.
-![Image to show ]()
+![Image to show successful login](readme-images/login-successful.png)
+  - Invalid username example below
+  ![Image to show invalid username input](readme-images/invalid-username.png)
 - Once the user is logged in the console will tell the user that they have successfully logged in, it will then load a main menu which displays 3 options. The options are to log a workout, view a previous workout or logout. The user must input 1,2 or 3 to select which one they would like to continue with.
-![Image to show ]()
+![Image to show the menu once a user has successfully logged in](readme-images/login-menu.png)
 - If the user selects option 1 to log a workout then they will go through to the next menu where they can then select which workout type they want to log 1 Push, 2 Pull or 3 Legs. Once the user has selected a workout type to log then the program will begin to loop through 5 different exercises to log, each exercise requires the user to input weight, sets and reps. The workout data entered will then be stored in the worksheet in the same row as the users username and password, this is stored in this way so that when the user wants to view their previous workout the program will check what user is logged in and retrieve the workout data that is assigned to those login details.
 ![Image to show ]()
 - If the user selects option 2 view a previous workout and the user has previous workout data then the program will retrieve the data by validating the correct username and password matches the one that was used to login and puts this data into a table so that it can be viewed clearly in the console. I have imported tabulate to be able to convert the worksheet data into a table which is printed into the console as the data is not stored in the same format in the worksheet.
