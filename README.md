@@ -33,11 +33,12 @@ Prior to starting this project I had to decide what to do, I quickly decided tha
 - Once the user is logged in the console will tell the user that they have successfully logged in, it will then load a main menu which displays 3 options. The options are to log a workout, view a previous workout or logout. The user must input 1,2 or 3 to select which one they would like to continue with.
 ![Image to show the menu once a user has successfully logged in](readme-images/login-menu.png)
 - If the user selects option 1 to log a workout then they will go through to the next menu where they can then select which workout type they want to log 1 Push, 2 Pull or 3 Legs. Once the user has selected a workout type to log then the program will begin to loop through 5 different exercises to log, each exercise requires the user to input weight, sets and reps. The workout data entered will then be stored in the worksheet in the same row as the users username and password, this is stored in this way so that when the user wants to view their previous workout the program will check what user is logged in and retrieve the workout data that is assigned to those login details.
-![Image to show the log workout menu]()
+![Image to show the log workout menu](readme-images/log-workout-menu.png)
+![Image of a workout being logged](readme-images/workout-log.png)
 - If the user selects option 2 view a previous workout and the user has previous workout data then the program will retrieve the data by validating the correct username and password matches the one that was used to login and puts this data into a table so that it can be viewed clearly in the console. I have imported tabulate to be able to convert the worksheet data into a table which is printed into the console as the data is not stored in the same format in the worksheet.
-![Image to show ]()
+![Image to show the previous workout data table](readme-images/workoutdata-table.png)
 - If the user selects option 3 to logout then the user will be logged out and the program will exit and stop running. The user will then be told that they have successfully been logged out. It will also prompt them to remember to come back and log their next workout to try and keep them motivated to keep coming back and working out.
-![Image to show ]()
+![Image to show the console when user selects to logout](readme-images/logout-function.png)
 ## Testing
 | What I am testing? | How I tested it| Expected Outcome | Result |
 | -- | -- | -- | -- |
@@ -54,7 +55,7 @@ Prior to starting this project I had to decide what to do, I quickly decided tha
 ![Image to show ](readme-images/pep8-validation.png)
 ## Bugs and Fixes
 ### Identified bug where workout data always overrides the previous workout data instead of storing extra
-- I have been unable to fix this bug due to the chosen layout and append statments I have used to create my program, despite this bug the program still works and functions showcasing my Python skills.
+- I have been unable to fix this bug due to the chosen layout and append statments I have used to create my program, despite this bug the program still works and functions showcasing my Python skills. If I were to improve this program to make it more in depth and have a better usablility then I would set it up so that each user that signs up has a new sheet created which stores every single workout logged and allows the user to see a workout by selecting a certain date, it would then pull the data stored on that day and display it.
 
 ### Identified a bug where everytime a user logged a workout it would create a whole new row for username and that specific workout
 - After identifying this bug I was able to create the function which checks if the user has already got workout data stored or if their username is in the worksheet, if the username is there it will then remove and update the workout data into the row where the username and password is stored. The worksheet will only ever have 1 row for each new user instead of before each workout would create a duplicate user with the same password and username.
@@ -66,7 +67,15 @@ Prior to starting this project I had to decide what to do, I quickly decided tha
 - Here is the code I changed to fix this bug
 ![Image to show rectified code](readme-images/correct-validation-code.png)
 
+### Identified a bug once the project was deployed where workout data was not being stored
+- This error was occuring due to incorrect indentation in my code, the code was simply not being run properly due to being indented too much after identifying this issue in the log_workout function I was then able to test that it was working again bu viewing the previous workout, logging a new workout and ensuring that the new workout when called by the view previous workout function showed the new inputted data.
+- Image to show the data that should have been logged and shown in the view previous workout table
+![Show the data entered to log workout when identifying this issue](readme-images/workout-log.png)
+- The response to calling the view previous workout data before fixing the bug
+![Image to show the error after logging a workout](readme-images/bugged-workout-log.png)
 
+### Unfixed bugs
+- There are some unfixed bugs where statements are printed where they should not be for example after logging a valid exercise the console, it is printing that the workout has been logged successfully which should only be shown upon submitting the final exercise
 ### Deployment
 These are the steps I followed to deploy my live program terminal
 - Firstly I had to type 'pip3 freeze > requirements.txt' into the terminal in my code space to add the requirements for Heroku to download to run my program so that it works.
@@ -78,3 +87,6 @@ These are the steps I followed to deploy my live program terminal
 - Finally I opted to have automatic deploys so that my live program updates each time I push my code to github. I then clicked deploy branch to get my live site.
 
 Here is the link to my live site: https://fitness-tracker-pp3-ac30d4f35dab.herokuapp.com/
+
+## Future Enhancements
+- In the future if I were to develop this project further then here are some of the few things that I would impliment straight away:
