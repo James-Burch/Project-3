@@ -68,3 +68,10 @@ Prior to starting this project I had to decide what to do, I quickly decided tha
 - If the user selects option 3 to logout then the user will be logged out and the program will exit and stop running. The user will then be told that they have successfully been logged out. It will also prompt them to remember to come back and log their next workout to try and keep them motivated to keep coming back and working out.
 
 ## Testing
+| What I am testing? | How I tested it| Expected Outcome | Result |
+| -- | -- | -- | -- |
+| Welcome message appears | Run the program and check if print statement prints to console | Welcome message shows when the program is run | Pass |
+| Login/Signup selection works | Type 'login' and 'signup' into the console | Program loads 'login' or 'signup' when either one is selected | Pass |
+| Username validation | Enter a username that is less than 4 characters and contains numbers | Console tells me I have entered an invalid username and must contain only letters and be more than 3 characters | Pass |
+| If there is a username already in use | I signed up using a username, then tried to signup again using the same username | Console to exit the signup process and print to user that username already exists and prompt to signup again or login | Pass |
+|    |    |    |    |
