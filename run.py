@@ -111,21 +111,23 @@ def log_workout(worksheet, username, workout_type):
                 break
             else:
                 print("Invalid number of reps. Please enter a number.")
-            exercises.append([exercise_name, weight, sets, reps])
-            user_exists, row_number = check_user(worksheet, username)
-            if user_exists:
-                # Gets the current row data if the user exists
-                row_data = worksheet.row_values(row_number)
-                # Update the row data with new exercises, avoiding overwriting username and password
-                updated_row_data = row_data[:2] + sum(exercises, [])
+            
+        exercises.append([exercise_name, weight, sets, reps])
+            
+        user_exists, row_number = check_user(worksheet, username)
+        if user_exists:
+            # Gets the current row data if the user exists
+            row_data = worksheet.row_values(row_number)
+            # Update the row data with new exercises, avoiding overwriting username and password
+            updated_row_data = row_data[:2] + sum(exercises, [])
 
-            try:
-                worksheet.update(range_name=f'A{row_number}', values=[updated_row_data])
-                print(f"Your workout has been logged successfully {username}!\n")
-            except Exception as e:
-                print(f"Error logging workout for {username}: {e}\n")
-        else:
-            print(f"Username '{username}' not found in the database.\n")
+        try:
+            worksheet.update(range_name=f'A{row_number}', values=[updated_row_data])
+            print(f"Your workout has been logged successfully {username}!\n")
+        except Exception as e:
+            print(f"Error logging workout for {username}: {e}\n")
+    else:
+        print(f"Username '{username}' not found in the database.\n")
 
 
 def menu(username):
