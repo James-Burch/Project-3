@@ -74,4 +74,13 @@ Prior to starting this project I had to decide what to do, I quickly decided tha
 | Login/Signup selection works | Type 'login' and 'signup' into the console | Program loads 'login' or 'signup' when either one is selected | Pass |
 | Username validation | Enter a username that is less than 4 characters and contains numbers | Console tells me I have entered an invalid username and must contain only letters and be more than 3 characters | Pass |
 | If there is a username already in use | I signed up using a username, then tried to signup again using the same username | Console to exit the signup process and print to user that username already exists and prompt to signup again or login | Pass |
-|    |    |    |    |
+| Error messages work | Enter an invalid number when selecting a workout, enter '4' which is not an option | Error message suggesting the user needs to enter 1,2 or 3 to select a workout type | Pass |
+
+## Bugs and Fixes
+### Identified bug where workout data always overrides the previous workout data instead of storing extra
+- I have been unable to fix this bug due to the chosen layout and append statments I have used to create my program, despite this bug the program still works and functions showcasing my Python skills.
+
+### Identified a bug where everytime a user logged a workout it would create a whole new row for username and that specific workout
+- After identifying this bug I was able to create the function which checks if the user has already got workout data stored or if their username is in the worksheet, if the username is there it will then remove and update the workout data into the row where the username and password is stored. The worksheet will only ever have 1 row for each new user instead of before each workout would create a duplicate user with the same password and username.
+
+
