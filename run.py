@@ -23,7 +23,7 @@ def check_user(worksheet, username):
     """
     usernames = worksheet.col_values(1)
     if username in usernames:
-        print(f"User {username} is correct please enter your password next!")
+        print(f"User {username} is correct please enter your password next!\n")
         return True, usernames.index(username) + 1
     return False, None
 
@@ -42,9 +42,9 @@ def register_new_user(worksheet, username, password):
     """
     try:
         worksheet.append_row([username, password])
-        print(f"User {username} successfully registered!")
+        print(f"User {username} successfully registered!\n")
     except Exception as e:
-        print(f"Error registering user {username}: {e}")
+        print(f"Error registering user {username}: {e}\n")
 
 
 def validate_username(username):
@@ -55,23 +55,33 @@ def validate_username(username):
     if re.match("^[A-Za-z]{4,}$", username):
         return True
     else:
-        print("Invalid username entered, it must contain only letters and contain more than 3 characters.")
+        print("Invalid username, Username must contain only letters and 3 or more characters.\n")
         return False
+
+
+def validate_exercise_name(name):
+    """
+    Validate that exercise name entered is all letters and has more than 3 characters
+    """
+    if re.match("^[A-Za-z]{4,}$", name):
+        return True
+    else:
+        print("Invalid exercise name, exercise must contain only letters and be 3 or more characters.\n")    
 
 
 def log_workout(worksheet, username, workout_type):
     """
     Log a workout for the specific user that is logged in currently.
     """
-    print(f"{username} has begun to log a {workout_type} workout.")
+    print(f"{username} has begun to log a {workout_type} workout.\n")
     exercises = []
     for i in range(1, 6):  # Loops 5 times as there are 5 exercises, change range to add or decrease exercises
-        exercise_name = input(f"Enter Exercise {i} Name for {workout_type.capitalize()} (or press Enter to skip): ").strip()
+        exercise_name = input(f"Enter Exercise Name {i} for {workout_type.capitalize()} workout: \n").strip()
         if not exercise_name:
             break  # Loop stops if there is no excercise name entered
-        weight = input(f"Enter weight in kg for exercise {i}: ").strip()
-        sets = input(f"Enter number of sets for exercise {i}: ").strip()
-        reps = input(f"Enter number of reps for exercise {i}: ").strip()
+        weight = input(f"Enter weight in kg for exercise {i}: \n").strip()
+        sets = input(f"Enter number of sets for exercise {i}: \n").strip()
+        reps = input(f"Enter number of reps for exercise {i}: \n").strip()
 
         exercises.append([exercise_name, weight, sets, reps])
 
@@ -85,11 +95,11 @@ def log_workout(worksheet, username, workout_type):
 
         try:
             worksheet.update(range_name=f'A{row_number}', values=[updated_row_data])
-            print(f"Your workout has been logged successfully {username}!")
+            print(f"Your workout has been logged successfully {username}!\n")
         except Exception as e:
-            print(f"Error logging workout for {username}: {e}")
+            print(f"Error logging workout for {username}: {e}\n")
     else:
-        print(f"Username '{username}' not found in the database.")
+        print(f"Username '{username}' not found in the database.\n")
 
 
 def menu(username):
@@ -102,20 +112,20 @@ def menu(username):
         print("2. View previous workout")
         print("3. Logout")
 
-        menu_choice = input("Please enter a number to select one of the above: ").strip()
+        menu_choice = input("Please enter 1, 2 or 3 to select one of the above: \n").strip()
 
         if menu_choice == '1':
             workout_type = choose_workout_type()
             if workout_type:
                 log_workout(WORKSHEET, username, workout_type)
-                print("Loading workout options")
+                print("Loading workout options\n")
         elif menu_choice == '2':
             view_progress(WORKSHEET, username)
         elif menu_choice == '3':
-            print("User has now been logged out")
+            print("User has now been logged out\n")
             break
         else:
-            print("Invalid entry. Please enter '1','2','3' to select an option")
+            print("Invalid entry. Please enter '1','2','3' to select an option\n")
 
 
 def choose_workout_type():
@@ -124,12 +134,12 @@ def choose_workout_type():
     It then returns the chosen workout type or None if an incorrect input is selected.
     """
     while True:
-        print("Choose your workout type:")
+        print("Choose your workout type:/n")
         print("1. Push")
         print("2. Pull")
         print("3. Legs")
 
-        workout_choice = input("Select 1, 2 or 3 to start logging your workout: ").strip()
+        workout_choice = input("Select 1, 2 or 3 to start logging your workout: \n").strip()
 
         if workout_choice == '1':
             return 'push'
@@ -138,7 +148,7 @@ def choose_workout_type():
         elif workout_choice == '3':
             return 'legs'
         else:
-            print("Invalid choice please choose 1 'push', 2 'pull', 3 'legs'.")
+            print("Invalid choice please choose 1 'push', 2 'pull', 3 'legs'.\n")
 
 
 def view_progress(worksheet, username):
@@ -155,24 +165,24 @@ def view_progress(worksheet, username):
             exercises = [row_data[i:i+4] for i in range(2, len(row_data), 4)]
             print(tabulate(exercises, headers=headers, tablefmt="pretty"))
         else:
-            print(f"{username} has no workout data to view.")
+            print(f"{username} has no workout data to view.\n")
     else:
-        print(f"User {username} not found in database, please log a workout.")
+        print(f"User {username} not found in database, please log a workout.\n")
 
 
 def main():
     """
     Main function to run the app.
     """
-    print("Welcome to your fitness tracker app, please login or signup to get started!")
+    print("Welcome to your fitness tracker app, please login or signup to get started!\n")
 
     while True:
-        action = input("Do you want to login or signup? (type login or signup and press enter): ").strip().lower()
+        action = input("Do you want to login or signup? (type login or signup and press enter): \n").strip().lower()
         if action not in ['login', 'signup']:
-            print("Invalid entry please enter 'login' or 'signup'.")
+            print("Invalid entry please enter 'login' or 'signup'.\n")
             continue
 
-        username = input("Please enter your username here (press enter to continue): ").strip()
+        username = input("Please enter your username here (press enter to continue): \n").strip()
         if not validate_username(username):
             continue
 
@@ -180,22 +190,22 @@ def main():
     # If the user selects login run this code
         if action == 'login':
             if user_exists:
-                password = input('Please enter your password (press enter to continue): ').strip()
+                password = input('Please enter your password (press enter to continue): \n').strip()
                 if check_password(WORKSHEET, row, password):
-                    print("Login Successful!")
+                    print("Login Successful!\n")
                     menu(username)
                     break
                 else:
-                    print("Incorrect password. Please try again.")
+                    print("Incorrect password. Please try again.\n")
             else:
-                print("Username does not exist. Please signup or try again.")
+                print("Username does not exist. Please signup or try again.\n")
             # Else if the user selects signup run this code
         elif action == 'signup':
             if user_exists:
                 print("Username already exists. Please login")
             else:
-                print(f"Username {username} is valid and has been created please enter a password so you are able to log back in future.")
-                password = input("Please enter your password: ").strip()
+                print(f"Username {username} is valid and has been created please enter a password so you are able to log back in future.\n")
+                password = input("Please enter your password: /n").strip()
                 register_new_user(WORKSHEET, username, password)
                 menu(username)
                 break
