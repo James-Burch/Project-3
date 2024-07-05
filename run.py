@@ -160,7 +160,7 @@ def choose_workout_type():
     It then returns the chosen workout type or None if an incorrect input is selected.
     """
     while True:
-        print("Choose your workout type:/n")
+        print("Choose your workout type:")
         print("1. Push")
         print("2. Pull")
         print("3. Legs")
