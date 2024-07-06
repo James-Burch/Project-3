@@ -6,7 +6,9 @@ The Fitness Tracker Project is a Python-based application that allows users to l
 <a href="https://fitness-tracker-pp3-ac30d4f35dab.herokuapp.com/">Here is the live site!</a>
 ## Project Planning
 Prior to starting this project I had to decide what to do, I quickly decided that I wanted to do my project on something that is a big part of my life and that I have a passion for, I have recently undergone a big change in the fitness in my own life and thought that I could use this to create a program for logging workouts and tracking progress. I started out creating a lucid chart to allow me to visually see what I needed to implement into my code. This was a massive help as it allowed me to work through step by step and follow a plan to ensure that there were no areas missed out.
+
 ## User Experience (UX)
+
 ### Program Goals
 - Allow user to signup if they have not already, requires username and password.
 - Allow user to login if they have already signed up user their username and password.
@@ -15,12 +17,14 @@ Prior to starting this project I had to decide what to do, I quickly decided tha
 - Allow the user to clearly and easily navigate the program at each stage so that there is always a valid entry into the console
 - Have a response to every single input option at each stage of the program so that the user is never stuck or unsure on what the program needs them to input to carry on using the program
 - Allow the user to logout/exit the program once they are finished using it
+
 ### User Needs
 - As a user of this programme I want to be able to log my workouts and store the amount of weight, sets and reps I do for each exercise.
 - As a user I want to be able to view the previous workout that I have logged to check my previous weight, sets and reps to challenge myself to do more during the next workout.
 - As a user I want to be able to receive clear instructions if I input invalid data so that I clearly understand what data is required to be input.
 - As a user I want to recieve confirmation of each input, for example when I signup I want to have confirmation that it has been succesfull, or when I login I want to visually see that the login is successful.
 - As a user I want the workouts that I have logged to be clearly displayed when I want to view them.
+
 ### Program Flow
 - When the user first enters into the program they are presented with a screen that explains a little bit about what the program can be used for and prompts the user to either select to signup or login
 ![Image to show live site terminal](readme-images/live-site-terminal.png)
@@ -39,6 +43,7 @@ Prior to starting this project I had to decide what to do, I quickly decided tha
 ![Image to show the previous workout data table](readme-images/workoutdata-table.png)
 - If the user selects option 3 to logout then the user will be logged out and the program will exit and stop running. The user will then be told that they have successfully been logged out. It will also prompt them to remember to come back and log their next workout to try and keep them motivated to keep coming back and working out.
 ![Image to show the console when user selects to logout](readme-images/logout-function.png)
+
 ## Testing
 | What I am testing? | How I tested it| Expected Outcome | Result |
 | -- | -- | -- | -- |
@@ -90,3 +95,15 @@ Here is the link to my live site: https://fitness-tracker-pp3-ac30d4f35dab.herok
 
 ## Future Enhancements
 - In the future if I were to develop this project further then here are some of the few things that I would impliment straight away:
+  - One of the first things that I would do is set up my worksheet and code to create a new sheet when a new user signs up so that each user has a whole sheet to store their workout data. This will improve the program as the user will then be able to retrieve any workout that they have logged.
+  - I would also store the date that the specific workout was done on so that the user can enter the date to retrieve that specific workout.
+  - I could also add a function that takes the first input weight of a certain exercise and allows the user to compare their most recent weight with the first input to see their progress.
+
+## Credits and Resources Used
+- I have used various W3 schools to check python structure and help get the base format for my code
+- I have used various youtube videos to help understand functions
+- I have also used the love sandwiches CI walkthrough project to help me link my google sheet using API's and at various points during coding my project to help understand how to call my functions.
+- I have also spoken with fellow students to get a 4 eyes check when I was struggling to get some code to work, this helped notice any typos or missing colons etc that I may have missed.
+
+
+
