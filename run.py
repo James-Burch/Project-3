@@ -17,13 +17,14 @@ SPREADSHEET = GSPREAD_CLIENT.open('fitness-tracker-project')
 WORKSHEET = SPREADSHEET.worksheet('userdata')
 
 
-def check_user(worksheet, username):
+def check_user(worksheet, username, print_message=True):
     """
     Check if the username entered is in the list of usernames on sheets.
     """
     usernames = worksheet.col_values(1)
     if username in usernames:
-        print(f"User {username} is correct please enter your password next!\n")
+        if print_message:
+            print(f"User {username} is correct please enter your password next!\n")
         return True, usernames.index(username) + 1
     return False, None
 
@@ -114,7 +115,7 @@ def log_workout(worksheet, username, workout_type):
             
         exercises.append([exercise_name, weight, sets, reps])
             
-        user_exists, row_number = check_user(worksheet, username)
+        user_exists, row_number = check_user(worksheet, username, print_message=False)
         if user_exists:
             # Gets the current row data if the user exists
             row_data = worksheet.row_values(row_number)
