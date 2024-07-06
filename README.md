@@ -1,14 +1,14 @@
 # Fitness Tracker
 ## Site Introduction
-![Image to show the deployed site terminal](readme-images/live-site-terminal.png)
 The Fitness Tracker Project is a Python-based application that allows users to log and track their workouts. Users can create an account, log their workouts (categorized as push, pull, or legs), and view their progress over time. The project utilizes Google Sheets for storing user data and workout logs, ensuring that the information is easily accessible and manageable. My inspiration for creating this program came from my own fitness journey, I personally use a fitness tracker to keep me motivated and able to see my progress.
+![Image to show the deployed site terminal](readme-images/live-site-terminal.png)
 
-<a href="https://fitness-tracker-pp3-ac30d4f35dab.herokuapp.com/">Here is the live site!</a>
+<a href="https://fitness-tracker-pp3-ac30d4f35dab.herokuapp.com/" rel="noopener">Here is the live site!</a>
+
 ## Project Planning
-Prior to starting this project I had to decide what to do, I quickly decided that I wanted to do my project on something that is a big part of my life and that I have a passion for, I have recently undergone a big change in the fitness in my own life and thought that I could use this to create a program for logging workouts and tracking progress. I started out creating a lucid chart to allow me to visually see what I needed to implement into my code. This was a massive help as it allowed me to work through step by step and follow a plan to ensure that there were no areas missed out.
+Prior to starting this project I had to decide what to do, I quickly decided that I wanted to do my project on something that is a big part of my life and that I have a passion for, I have recently undergone a big change in the fitness in my own life and thought that I could use this to create a program for logging workouts and tracking progress. I decided the best way to plan out my code was to create a flow chart, personally I just used the old fashion method of pencil and paper but in future I will plan to use lucid charts. My flow chart allowed me to tackle each small part of my code without getting side tracked and feeling overwhelmed.
 
 ## User Experience (UX)
-
 ### Program Goals
 - Allow user to signup if they have not already, requires username and password.
 - Allow user to login if they have already signed up user their username and password.
@@ -57,7 +57,7 @@ Prior to starting this project I had to decide what to do, I quickly decided tha
 ### Pep8 CI Python Code Validation
 - I have entered my code into the pep8 CI python code validation to check for any invalid code or indentantion in my code, there were some indentation errors and areas that needed adjusting to be valid. I fixed these errors in the validation checker and copied the new valid code back to my workspace.
 - I am recieving errors for code lines being too long, this is not because of invalid code but due to how the CI template is setup, this just means that those lines will read over 2 rows in the deployed terminal.
-![Image to show ](readme-images/pep8-validation.png)
+![Image to show pep8 validation](readme-images/pep8-validation.png)
 ## Bugs and Fixes
 ### Identified bug where workout data always overrides the previous workout data instead of storing extra
 - I have been unable to fix this bug due to the chosen layout and append statments I have used to create my program, despite this bug the program still works and functions showcasing my Python skills. If I were to improve this program to make it more in depth and have a better usablility then I would set it up so that each user that signs up has a new sheet created which stores every single workout logged and allows the user to see a workout by selecting a certain date, it would then pull the data stored on that day and display it.
